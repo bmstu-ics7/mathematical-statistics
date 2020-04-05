@@ -47,7 +47,7 @@ end
 % [in] X - генеральная совокупность
 % [return] оценка дисперсии выборки
 function D = FindD(X)
-    D = sum((X - mean(X)) .^ 2) / length(X);
+    D = sum((X - mean(X)) .^ 2) / (length(X) - 1);
     return
 end
 
@@ -95,8 +95,9 @@ function MakeGraphs(X)
     f = normpdf(x, mean(x), sqrt(FindD(x)));
     p1 = plot(x, f);
     p1.LineWidth = 2;
-    title('Histogram');
     hold off;
+    legend({'Гистограмма', 'Функция плотности распределения'}, ...
+        'Location','northwest');
 
     subplot(2, 1, 2);
     % Эмперическая функция распределения
@@ -106,6 +107,7 @@ function MakeGraphs(X)
     f = normcdf(x, mean(x), sqrt(FindD(x)));
     p2 = plot(x, f);
     p2.LineWidth = 2;
-    title('Empirical distribution function');
     hold off;
+    legend({'Эмперическая функция распределения', 'Функция распределения'}, ...
+        'Location','northwest');
 end
