@@ -144,6 +144,52 @@
     \theta = \frac{4 + 12 + 6 + 7 + 9}{2 \cdot 5} = \frac{38}{10} = 3.8
 \end{equation*}
 
+\textbf{Ответ:} $\theta = \frac{\overline X}{2} = 3.8$.
+
 \section{ЗАДАЧА 4}
 
-При помощи вольтметра, точность которого характеризуется средним квадратичным отклонением $\sigma = 0.2$ В, произведено $n = 10$ измерений напряжения бортовой батареи, в результате которых получено $X_n = 50.2$ В. Считая распределение контролируемого признака нормальным, построить для него доверительный интервал уровня $\gamma = 0.95$.
+При помощи вольтметра, точность которого характеризуется средним квадратичным отклонением $\sigma = 0.2$ В, произведено $n = 10$ измерений напряжения бортовой батареи, в результате которых получено $\overline X_n = 50.2$ В. Считая распределение контролируемого признака нормальным, построить для него доверительный интервал уровня $\gamma = 0.95$.
+
+\textbf{Решение}
+
+Из условия следует, что $X \sim N(m, \sigma^2)$, где $\sigma = 0.2$.
+
+\begin{equation*}
+    g \big( \vec X, m \big) = \frac{m - \overline X}{\sigma} \sqrt{n} \sim N(0,1)
+\end{equation*}
+
+\begin{equation*}
+    \alpha_1 = \alpha_2 = \frac{1 - \gamma}{2} = 0.025
+\end{equation*}
+
+\begin{equation*}
+    \gamma = P \bigg\{ u_{\alpha_1} < \frac{m - \overline X}{\sigma} \sqrt{n} < u_{1 - \alpha_2} \bigg\} = P \bigg\{ \overline X - \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}} < m < \overline X + \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}} \bigg\}
+\end{equation*}
+
+В качестве нижней границы $\gamma$-доверительного интервала для $m$ можно использовать статистику
+
+\begin{equation*}
+    \underline m \big( \vec X \big) = \overline X - \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}}
+\end{equation*}
+
+В качестве верхней границы -- статистику
+
+\begin{equation*}
+    \overline m \big( \vec X \big) = \overline X + \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}}
+\end{equation*}
+
+Из таблицы квантилей получаем
+
+\begin{equation*}
+    u_{\frac{1+\gamma}{2}} = u_{0.975} = 1.9599
+\end{equation*}
+
+\begin{equation*}
+    \frac{\sigma \cdot u_{0.975}}{\sqrt{n}} = \frac{0.2 \cdot 1.9599}{\sqrt{10}} \approx 0.124
+\end{equation*}
+
+\begin{equation*}
+    \underline m \big( \vec X \big) \approx 50.2 - 0.124 \approx 50.076,\ \ \overline m \big( \vec X \big) \approx 50.2 + 0.124 \approx 50.324
+\end{equation*}
+
+\textbf{Ответ:} $m \in (50.076; 50.324)$.
