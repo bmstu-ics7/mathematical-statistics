@@ -52,11 +52,11 @@ $\vec x = \big( x_1, \dots, x_n \big)$.
 Если объем $n$ статистической выборки $\vec x$ велик ($n \geq 50$), то можно сгруппировать выборку в интервальный статистический ряд. Для этого отрезок $J = \big[ x_{(1)}, x_{(n)} \big]$ делят на $p = [\log_2n] + 1$ (где $[a]$ -- целая часть числа $a$) равновеликих частей:
 
 \begin{equation*}
-    J_i = \big[ a_i, a_{i+1} \big), i = \overline{0; p-1}
+    J_i = \big[ a_{i-1}, a_i \big), i = \overline{1; p-1} \\
 \end{equation*}
 
 \begin{equation*}
-    J_p = \big[ a_{p-1}, a_p \big]
+    J_{p} = \big[ a_{p-1}, a_p \big]
 \end{equation*}
 
 где
