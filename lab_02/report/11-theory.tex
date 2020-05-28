@@ -1,0 +1,64 @@
+\section{ФОРМУЛЫ}
+
+Пусть $X$ -- случайная величина, закон распределения которой известен с точностью до вектора $\vec \theta = \big( \theta_1, ..., \theta_r \big)$ неизвестных параметров. Для упрощения рассуждений будем считать, что $r = 1$ и
+
+\begin{equation*}
+    \vec \theta = \big( \theta_1 \big) = \big( \theta \big) \in \mathbb{R}^1
+\end{equation*}
+
+то есть закон распределения случайной величины $X$ зависит от одного скалярного неизвестного параметра.
+
+Пусть $\vec X$ -- случайная выборка объема $n$ из генеральной совокупности $X$. Тогда $\vec x$ -- любая реализация случайной выборки $\vec X$.
+
+\subsection{$\gamma$-доверительный интервал}
+
+Интервальной оценкой с коэффициентом доверия $\gamma$ ($\gamma$-доверительной интервальной оценкой) параметра $\theta$ называют пару статистик $\underline{\theta} \big( \vec X \big)$ и $\overline{\theta} \big( \vec X \big)$ таких, что
+
+\begin{equation*}
+    P \bigg\{ \underline{\theta} \big( \vec X \big) < \theta < \overline{\theta} \big( \vec X \big) \bigg\} = \gamma
+\end{equation*}
+
+Доверительным интервалом с коэффициентом доверия $\gamma$ ($\gamma$-доверительным интервалом) параметра $\theta$ называют интервал $\big( \underline{\theta} (\vec x),\overline{\theta} (\vec x) \big)$, отвечающий выборочным значениям статистик $\underline{\theta} \big( \vec X \big)$ и $\overline{\theta} \big( \vec X \big)$.
+
+\subsection{Формулы для вычисления границ \\ $\gamma$-доверительного интервала}
+
+Пусть генеральная совокупность $X$ распределена по нормальному закону с параметрами $\mu$ и $\sigma^2$.
+
+Тогда оценка математического ожидания
+
+\begin{equation*}
+    \underline{\mu} \big( \vec X \big) = \overline X - \frac{S\big( \vec X \big) t_{1 - \alpha}}{\sqrt{n}}
+\end{equation*}
+
+\begin{equation*}
+    \overline{\mu} \big( \vec X \big) = \overline X + \frac{S\big( \vec X \big) t_{1 - \alpha}}{\sqrt{n}}
+\end{equation*}
+
+где
+
+\begin{itemize}
+    \item $\overline X$ -- оценка математического ожидания;
+    \item $n$ -- число опытов;
+    \item $S \big( \vec X \big)$ -- точечная оценка дисперсии случайной выборки $\vec X$;
+    \item $t_{1-\alpha}$ -- квантиль уровня $1 - \alpha$ для распределения Стьюдента с $n-1$ степенями свободы;
+    \item $\alpha = \frac{1-\gamma}{2}$.
+\end{itemize}
+
+Оценка для дисперсии
+
+\begin{equation*}
+    \underline{\sigma^2} \big( \vec X \big) = \frac{S \big( \vec X \big) (n - 1)}{\chi^2_{1 - \alpha}}
+\end{equation*}
+
+\begin{equation*}
+    \overline{\sigma^2} \big( \vec X \big) = \frac{S \big( \vec X \big) (n - 1)}{\chi^2_{\alpha}}
+\end{equation*}
+
+где
+
+\begin{itemize}
+    \item $n$ -- объем выборки;
+    \item $S \big( \vec X \big)$ -- точечная оценка дисперсии случайной выборки $\vec X$;
+    \item $\chi^2_\alpha$ -- квантиль уровня $\alpha$ для распределения $\chi^2$ с $n-1$ степенями свободы;
+    \item $\alpha = \frac{1-\gamma}{2}$.
+\end{itemize}
