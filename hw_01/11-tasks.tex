@@ -1,0 +1,195 @@
+\section{ЗАДАЧА 1}
+
+Вероятность некоторого случайного события равна 0.9. Какова вероятность того, что после 64 000 независимых испытаний наблюденная частота этого события лежит в интервале 0.9$\pm$0.01? Решить задачу, используя неравенство Чебышева и интегральную теорему Муавра-Лапласа
+
+\subsection{Неравенство Чебышева}
+
+Пусть
+
+\begin{itemize}
+    \item $X$ - случайная величина
+    \item $\exists MX,\ \exists DX$
+\end{itemize}
+
+\begin{equation*}
+    \forall \varepsilon > 0, P\{ |X - MX| \geq \varepsilon \} \le \frac{DX}{\varepsilon^2}
+\end{equation*}
+
+\textbf{Решение}
+
+\begin{itemize}
+    \item Пусть $k_n$ -- число успехов в серии испытаний по схеме Бернулли ($p = 0.9$)
+    \item $M[K_n] = np = 64000 \cdot 0.9 = 57600$
+    \item $D[K_n] = npq = 64000 \cdot 0.9 \cdot 0.1 = 5760$
+\end{itemize}
+
+\begin{multline*}
+    P \{ 0.89 \le r_\text{н} \le 0.91 \} = P \{ 0.89 \le \frac{k_n}{n} \le 0.91 \} = P \{ 56960 \le k_n \le 58240 \} = \\
+    = P \{ -640 \le k_n - M[K_n] \le 640 \} = P\big\{ \big|k_n - M[K_n]\big| \le 640 \big\} \geq 1 - \frac{D[K_n]}{\varepsilon^2} = \\
+    = 1 - \frac{5760}{640^2} = 1 - 0.014 = 0.986
+\end{multline*}
+
+\textbf{Ответ:} $P \{ 0.89 \le r_\text{н} \le 0.91 \} \geq 0.986$
+
+\subsection{Теорема Муавра-Лапласа}
+
+\textbf{Решение}
+
+Имеем схему испытаний Бернулли
+
+\begin{itemize}
+    \item $n = 64000 \gg 1$
+    \item $p = 0.9$
+    \item $q = 1 - p = 0.1$
+\end{itemize}
+
+\begin{multline*}
+    P \{ 0.89 \le r_\text{н} \le 0.91 \} = P \{ 0.89 \le \frac{k_n}{n} \le 0.91 \} = P \{ 56960 \le k_n \le 58240 \} \approx \\
+    \approx \Phi_0(x_2) - \Phi_0(x_1) \approx 2 \Phi_0 (8.4327) \approx 2 \cdot 0.49999 \approx 0.99998
+\end{multline*}
+
+\begin{equation*}
+    x_1 = \frac{k_1 - np}{\sqrt{npq}} = \frac{56960 - 64000 \cdot 0.9}{\sqrt{64000 \cdot 0.9 \cdot 0.1}} \approx \frac{-640}{75.89} \approx -8.4327
+\end{equation*}
+
+\begin{equation*}
+    x_2 = \frac{k_2 - np}{\sqrt{npq}} = \frac{58240 - 64000 \cdot 0.9}{\sqrt{64000 \cdot 0.8 \cdot 0.1}} \approx \frac{640}{75.89} \approx 8.4327
+\end{equation*}
+
+\textbf{Ответ:} $P \{ 0.89 \le r_\text{н} \le 0.91 \} \approx 0.99998.$
+
+\section{ЗАДАЧА 2}
+
+С использованием метода моментов для случайной выборки $\vec X = (X_1, ..., X_n)$ из генеральной совокупности $X$ найти точечные оценки указанных параметров заданного закона распределения.
+
+\textbf{Закон распределения}
+
+\begin{equation*}
+    f_X(x) = \theta^2 xe^{-\theta x}, x > 0
+\end{equation*}
+
+\textbf{Решение}
+
+\begin{enumerate}
+    \item Неизвестный параметр $\theta$ $\Rightarrow$ $r = 1$ $\Rightarrow$ найдем моменты до первого порядка
+
+        \begin{multline*}
+            MX = \int_{-\infty}^{+\infty} x \cdot f_X(x) dx = \int_0^{+\infty} x \theta^2 xe^{-\theta x} dx = \theta^2 \int_{0}^{+\infty} x^2 e^{-\theta x} dx = \\
+            = \theta^2 \cdot \bigg( - \frac{1}{\theta} \bigg) \int_0^{+\infty} x^2 de^{-\theta x} = \underbrace{-\theta x^2 e^{-\theta x} \bigg|_0^{+\infty}}_{0} + 2\theta \int_0^{+\infty} xe^{-\theta x} dx = \\
+            = -2 \int_0^{+\infty} xde^{-\theta x} = \underbrace{-2 xe^{-\theta x} \bigg|_0^{+\infty}}_{0} + 2 \int_0^{+\infty} e^{-\theta x} dx = -\frac{2}{\theta} e^{-\theta x} \bigg|_0^{+\infty} = \frac{2}{\theta}
+        \end{multline*}
+
+    \item Приравняем теоретические моменты к их выборочным аналогам
+
+        \begin{equation*}
+            \frac{2}{\theta} = \overline X \Rightarrow \theta = \frac{2}{\overline X}
+        \end{equation*}
+
+        \begin{equation*}
+            \overline X = \frac{1}{n} \sum_{i=1}^n X_i
+        \end{equation*}
+\end{enumerate}
+
+\textbf{Ответ:} $\theta = \frac{2}{\overline X}$
+
+\section{ЗАДАЧА 3}
+
+С использованием метода максимального правдоподобия для случайной выборки $\vec X = (X_1, ..., X_n)$ из генеральной совокупности $X$ найти точечные оценки параметров заданного закона распределения. Вычислить выборочные значения найденных оценок для выборки $\vec x_5 = (x_1, ..., x5)$.
+
+\textbf{Закон распределения}
+
+\begin{equation*}
+    f_X(x) = \frac{1}{\theta^2} xe^{-x / \theta}, x > 0
+\end{equation*}
+
+\textbf{Выборка $\vec x_5$}
+
+\begin{equation*}
+    (4, 12, 6, 7, 9)
+\end{equation*}
+
+\textbf{Решение}
+
+\begin{equation*}
+    L(\vec X, \theta) = f(X_1, \theta) \cdot ... \cdot f(X_n, \theta) = \frac{1}{\theta^{2n}} \cdot \big( X_1 \cdot ... \cdot X_n \big) \cdot \big( e^{-X_1/\theta} \cdot ... \cdot e^{-X_n/\theta} \big)
+\end{equation*}
+
+\begin{equation*}
+    \ln L = -2n \ln \theta + \ln \big(X_1 \cdot ... \cdot X_n \big) - \frac{X_1 + ... + X_n}{\theta}
+\end{equation*}
+
+Необходимое условие экстремума
+
+\begin{equation*}
+    \frac{\partial \ln L}{\partial \theta} = \frac{-2n}{\theta} + \frac{X_1 + ... + X_n}{\theta^2} = 0
+\end{equation*}
+
+\begin{equation*}
+    \frac{X_1 + ... + X_n}{\theta} = 2n \Rightarrow \theta = \frac{X_1 + .. + X_n}{2n} = \frac{\overline X}{2}
+\end{equation*}
+
+Достаточное условие экстремума
+
+\begin{equation*}
+    \frac{\partial^2 \ln L}{\partial^2 \theta} = \frac{2n}{\theta^2} - 2 \frac{X_1 + ... + X_n}{\theta^3} = \frac{2n}{\theta^2} - \frac{2n \overline X}{\theta^3} = \frac{8n}{\overline X^2} - \frac{16n}{\overline X^2} < 0
+\end{equation*}
+
+\begin{equation*}
+    \theta = \frac{\overline X}{2} \text{ -- точка локального максимума}
+\end{equation*}
+
+Подставим выборку $\vec x_5$
+
+\begin{equation*}
+    \theta = \frac{4 + 12 + 6 + 7 + 9}{2 \cdot 5} = \frac{38}{10} = 3.8
+\end{equation*}
+
+\textbf{Ответ:} $\theta = \frac{\overline X}{2} = 3.8$.
+
+\section{ЗАДАЧА 4}
+
+При помощи вольтметра, точность которого характеризуется средним квадратичным отклонением $\sigma = 0.2$ В, произведено $n = 10$ измерений напряжения бортовой батареи, в результате которых получено $\overline X_n = 50.2$ В. Считая распределение контролируемого признака нормальным, построить для него доверительный интервал уровня $\gamma = 0.95$.
+
+\textbf{Решение}
+
+Из условия следует, что $X \sim N(m, \sigma^2)$, где $\sigma = 0.2$.
+
+\begin{equation*}
+    g \big( \vec X, m \big) = \frac{m - \overline X}{\sigma} \sqrt{n} \sim N(0,1)
+\end{equation*}
+
+\begin{equation*}
+    \alpha_1 = \alpha_2 = \frac{1 - \gamma}{2} = 0.025
+\end{equation*}
+
+\begin{equation*}
+    \gamma = P \bigg\{ u_{\alpha_1} < \frac{m - \overline X}{\sigma} \sqrt{n} < u_{1 - \alpha_2} \bigg\} = P \bigg\{ \overline X - \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}} < m < \overline X + \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}} \bigg\}
+\end{equation*}
+
+В качестве нижней границы $\gamma$-доверительного интервала для $m$ можно использовать статистику
+
+\begin{equation*}
+    \underline m \big( \vec X \big) = \overline X - \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}}
+\end{equation*}
+
+В качестве верхней границы -- статистику
+
+\begin{equation*}
+    \overline m \big( \vec X \big) = \overline X + \frac{\sigma u_\frac{1+\gamma}{2}}{\sqrt{n}}
+\end{equation*}
+
+Из таблицы квантилей получаем
+
+\begin{equation*}
+    u_{\frac{1+\gamma}{2}} = u_{0.975} = 1.9599
+\end{equation*}
+
+\begin{equation*}
+    \frac{\sigma \cdot u_{0.975}}{\sqrt{n}} = \frac{0.2 \cdot 1.9599}{\sqrt{10}} \approx 0.124
+\end{equation*}
+
+\begin{equation*}
+    \underline m \big( \vec X \big) \approx 50.2 - 0.124 \approx 50.076,\ \ \overline m \big( \vec X \big) \approx 50.2 + 0.124 \approx 50.324
+\end{equation*}
+
+\textbf{Ответ:} $m \in (50.076; 50.324)$.
